@@ -1,0 +1,2314 @@
+[
+    {
+        "id": "43f70893a9400a9d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "080cd84d2c3465d2",
+        "type": "mqtt in",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "surroundings",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fde177df96e6add1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "d04b37d58b606f1f"
+            ]
+        ]
+    },
+    {
+        "id": "5bc5912480352c89",
+        "type": "aedes broker",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "dburl": "",
+        "usetls": false,
+        "x": 170,
+        "y": 60,
+        "wires": [
+            [],
+            [
+                "9da381501d6c8c55"
+            ]
+        ]
+    },
+    {
+        "id": "d04b37d58b606f1f",
+        "type": "json",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "8eb4b8551ee0c6c8",
+                "51d1a2b8b04a75f9",
+                "67d1223d278e7b2f",
+                "13bcdddd5b93f111"
+            ]
+        ]
+    },
+    {
+        "id": "2153a826d3c47ca2",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "Vlhkost",
+        "group": "9d5bb74236fb5db7",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Vlhkost",
+        "label": "%",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 940,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8330dc567d2123f2",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "Teplota",
+        "group": "9d5bb74236fb5db7",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Teplota",
+        "label": "°C",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 940,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d9bc2ad64f64c404",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Vlhkost",
+        "group": "9d5bb74236fb5db7",
+        "order": 2,
+        "width": 6,
+        "height": 3,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "bezier",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 940,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8eb4b8551ee0c6c8",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Vlhkost",
+        "func": "return {payload: msg.payload.humidity};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 240,
+        "wires": [
+            [
+                "d9bc2ad64f64c404",
+                "2153a826d3c47ca2"
+            ]
+        ]
+    },
+    {
+        "id": "51d1a2b8b04a75f9",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Teplota",
+        "func": "return {payload: msg.payload.temperature};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 320,
+        "wires": [
+            [
+                "8330dc567d2123f2",
+                "2d3d9ccba0135613"
+            ]
+        ]
+    },
+    {
+        "id": "2d3d9ccba0135613",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Teplota",
+        "group": "9d5bb74236fb5db7",
+        "order": 4,
+        "width": 6,
+        "height": 3,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "bezier",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 940,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "67d1223d278e7b2f",
+        "type": "debug",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "9504f04c408336a5",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "25",
+        "payloadType": "num",
+        "x": 170,
+        "y": 600,
+        "wires": [
+            [
+                "04e0299d28b76078",
+                "a3bc73443a15685c",
+                "6233e5777ab9e1f8"
+            ]
+        ]
+    },
+    {
+        "id": "c93b066d9d46db14",
+        "type": "mqtt out",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "fan/use",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fde177df96e6add1",
+        "x": 620,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "bf98a5dd322cf372",
+        "type": "e-mail",
+        "z": "43f70893a9400a9d",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "pot.tester.1@gmail.com",
+        "dname": "",
+        "x": 1550,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "710c375e870a606d",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Pot temperature is too high!",
+        "payloadType": "str",
+        "x": 730,
+        "y": 100,
+        "wires": [
+            [
+                "bf98a5dd322cf372"
+            ]
+        ]
+    },
+    {
+        "id": "13bcdddd5b93f111",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "let message = \"\";\n\n// Okolní vlhkost\nif (msg.payload.humidity > flow.get(\"surroundings_humidity_max\")) {\n    if (!flow.get(\"surroundings_humidity_alerted\")) {\n        message += `Surroundings humidity is too high! (${msg.payload.humidity}%)\\n`;\n    }\n    \n    flow.set(\"surroundings_humidity_alerted\", true);\n}\nelse if (msg.payload.humidity < flow.get(\"surroundings_humidity_min\")) {\n    if (!flow.get(\"surroundings_humidity_alerted\")) {\n        message += `Surroundings humidity is too low! (${msg.payload.humidity}%)\\n`;\n    }\n    \n    flow.set(\"surroundings_humidity_alerted\", true);  \n}\nelse {\n    flow.set(\"surroundings_humidity_alerted\", false);\n}\n\n// Okolní teplota\nif (msg.payload.temperature > flow.get(\"surroundings_temperature_max\")) {\n    if (!flow.get(\"surroundings_temperature_alerted\")) {\n       message += `Surroundings temperature is too high! (${msg.payload.temperature}°C)\\n`;\n    }\n    \n    flow.set(\"surroundings_temperature_alerted\", true);\n}\nelse if (msg.payload.temperature < flow.get(\"surroundings_temperature_min\")) {\n    if (!flow.get(\"surroundings_temperature_alerted\")) {\n        message += `Surroundings temperature is too low! (${msg.payload.temperature}°C)\\n`;\n    }\n  \n    flow.set(\"surroundings_temperature_alerted\", true);\n}\nelse {\n    flow.set(\"surroundings_temperature_alerted\", false);\n    // message += \"Temperature back to normal!\\n\"\n}\n\nif (message.length > 0) {\n    return {payload: message};\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 200,
+        "wires": [
+            [
+                "bf98a5dd322cf372",
+                "82773f23d1ca242e"
+            ]
+        ]
+    },
+    {
+        "id": "82773f23d1ca242e",
+        "type": "debug",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "04e0299d28b76078",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Setup",
+        "func": "flow.set(\"surroundings_humidity_alerted\", false);\nflow.set(\"surroundings_temperature_alerted\", false);\n\nflow.set(\"pot1_soil_hum_alerted\", false);\nflow.set(\"pot2_soil_hum_alerted\", false);\nflow.set(\"pot3_soil_hum_alerted\", false);\n\nflow.set(\"pot1_water_level_alerted\", false);\nflow.set(\"pot2_water_level_alerted\", false);\nflow.set(\"pot3_water_level_alerted\", false);\n\n// flow.set(\"surroundings_humidity_min\", 25);\n// flow.set(\"surroundings_humidity_max\", 50);\n\n// flow.set(\"surroundings_temperature_min\", 20);\n// flow.set(\"surroundings_temperature_max\", 25);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6983fb76d8bb8ba5",
+        "type": "ui_switch",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Povolit větrák",
+        "tooltip": "",
+        "group": "bda1ad00daad0957",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 380,
+        "y": 840,
+        "wires": [
+            [
+                "c93b066d9d46db14"
+            ]
+        ]
+    },
+    {
+        "id": "2daeda7b9f91fc8b",
+        "type": "mqtt out",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "fan/temp",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fde177df96e6add1",
+        "x": 620,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "a3bc73443a15685c",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Teplota (°C)",
+        "tooltip": "",
+        "group": "bda1ad00daad0957",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": "0.1",
+        "className": "",
+        "x": 370,
+        "y": 640,
+        "wires": [
+            [
+                "2daeda7b9f91fc8b"
+            ]
+        ]
+    },
+    {
+        "id": "76704aa77e89fc4e",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Vlhkost (%)",
+        "tooltip": "",
+        "group": "bda1ad00daad0957",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 370,
+        "y": 740,
+        "wires": [
+            [
+                "b858722a6432e2d6"
+            ]
+        ]
+    },
+    {
+        "id": "a93623d63a4ed8a7",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "50",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "50",
+        "payloadType": "num",
+        "x": 170,
+        "y": 700,
+        "wires": [
+            [
+                "76704aa77e89fc4e",
+                "b129a47e5b994338"
+            ]
+        ]
+    },
+    {
+        "id": "b858722a6432e2d6",
+        "type": "mqtt out",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "fan/hum",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fde177df96e6add1",
+        "x": 620,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "cb99fa7a3750fdf5",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "true",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "6983fb76d8bb8ba5",
+                "2bc21274e3a4710b"
+            ]
+        ]
+    },
+    {
+        "id": "bc78e5590f2b46d0",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "28.0",
+        "payloadType": "num",
+        "x": 810,
+        "y": 640,
+        "wires": [
+            [
+                "63fd8cf090ba7a80",
+                "be1edd00e2c78e7b"
+            ]
+        ]
+    },
+    {
+        "id": "9da381501d6c8c55",
+        "type": "debug",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6233e5777ab9e1f8",
+        "type": "delay",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 600,
+        "wires": [
+            [
+                "2daeda7b9f91fc8b"
+            ]
+        ]
+    },
+    {
+        "id": "b129a47e5b994338",
+        "type": "delay",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 700,
+        "wires": [
+            [
+                "b858722a6432e2d6"
+            ]
+        ]
+    },
+    {
+        "id": "2bc21274e3a4710b",
+        "type": "delay",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "c93b066d9d46db14"
+            ]
+        ]
+    },
+    {
+        "id": "9037d4c7057757a9",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Hystereze teploty (+- °C)",
+        "tooltip": "",
+        "group": "bda1ad00daad0957",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5",
+        "step": "0.1",
+        "className": "",
+        "x": 410,
+        "y": 940,
+        "wires": [
+            [
+                "01f76981c492138b"
+            ]
+        ]
+    },
+    {
+        "id": "ba334a4d45585237",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Hystereze vlhkosti (+- %)",
+        "tooltip": "",
+        "group": "bda1ad00daad0957",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 410,
+        "y": 1040,
+        "wires": [
+            [
+                "063b987ca0567a0f"
+            ]
+        ]
+    },
+    {
+        "id": "cf9ce7585f8daf25",
+        "type": "delay",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 900,
+        "wires": [
+            [
+                "01f76981c492138b"
+            ]
+        ]
+    },
+    {
+        "id": "87206a59b6c2df5c",
+        "type": "delay",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 1000,
+        "wires": [
+            [
+                "063b987ca0567a0f"
+            ]
+        ]
+    },
+    {
+        "id": "3677e13a7d8e1dec",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "5",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 170,
+        "y": 1000,
+        "wires": [
+            [
+                "87206a59b6c2df5c",
+                "ba334a4d45585237"
+            ]
+        ]
+    },
+    {
+        "id": "2e276fa140dd55dd",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "0.5",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0.5",
+        "payloadType": "num",
+        "x": 170,
+        "y": 900,
+        "wires": [
+            [
+                "cf9ce7585f8daf25",
+                "9037d4c7057757a9"
+            ]
+        ]
+    },
+    {
+        "id": "01f76981c492138b",
+        "type": "mqtt out",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "fan/tempHys",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fde177df96e6add1",
+        "x": 630,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "063b987ca0567a0f",
+        "type": "mqtt out",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "fan/humHys",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fde177df96e6add1",
+        "x": 630,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "51724dd345e35883",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Min humidity",
+        "func": "flow.set(\"surroundings_humidity_min\", msg.payload);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63fd8cf090ba7a80",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Horní hranice teploty (°C)",
+        "tooltip": "",
+        "group": "b488ae17ab7d923d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": "0.1",
+        "className": "",
+        "x": 1030,
+        "y": 680,
+        "wires": [
+            [
+                "be1edd00e2c78e7b"
+            ]
+        ]
+    },
+    {
+        "id": "d80caadb2376179d",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Dolní hranice teploty (°C)",
+        "tooltip": "",
+        "group": "b488ae17ab7d923d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "step": "0.1",
+        "className": "",
+        "x": 1030,
+        "y": 780,
+        "wires": [
+            [
+                "24853b8719718627"
+            ]
+        ]
+    },
+    {
+        "id": "54bdaffb870d4d1e",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Horní hranice vlhkosti (%)",
+        "tooltip": "",
+        "group": "b488ae17ab7d923d",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1030,
+        "y": 880,
+        "wires": [
+            [
+                "7863c2881055bd91"
+            ]
+        ]
+    },
+    {
+        "id": "9b24ec0a854dbca7",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Dolní hranice vlhkosti (%)",
+        "tooltip": "",
+        "group": "b488ae17ab7d923d",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1030,
+        "y": 980,
+        "wires": [
+            [
+                "51724dd345e35883"
+            ]
+        ]
+    },
+    {
+        "id": "7863c2881055bd91",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Max humidity",
+        "func": "flow.set(\"surroundings_humidity_max\", msg.payload);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24853b8719718627",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Min temperature",
+        "func": "flow.set(\"surroundings_temperature_min\", msg.payload);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be1edd00e2c78e7b",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "Max temperature",
+        "func": "flow.set(\"surroundings_temperature_max\", msg.payload);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1290,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "420adba70a839ff7",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "22.0",
+        "payloadType": "num",
+        "x": 810,
+        "y": 740,
+        "wires": [
+            [
+                "d80caadb2376179d",
+                "24853b8719718627"
+            ]
+        ]
+    },
+    {
+        "id": "5750c707b9416efc",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "65",
+        "payloadType": "num",
+        "x": 810,
+        "y": 840,
+        "wires": [
+            [
+                "7863c2881055bd91",
+                "54bdaffb870d4d1e"
+            ]
+        ]
+    },
+    {
+        "id": "6d5a2ff1be5c397e",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "35",
+        "payloadType": "num",
+        "x": 810,
+        "y": 940,
+        "wires": [
+            [
+                "51724dd345e35883",
+                "9b24ec0a854dbca7"
+            ]
+        ]
+    },
+    {
+        "id": "1d7993b4f1bb21fc",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Hladina vody",
+        "group": "af493a71a357cb85",
+        "order": 4,
+        "width": "6",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9d70fbc95256645",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "group": "af493a71a357cb85",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Hladina vody",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1010,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "9e556e5c27115886",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "group": "af493a71a357cb85",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Vlhkost půdy",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1010,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "897d75fa83a88c8c",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Vlhkost půdy",
+        "group": "af493a71a357cb85",
+        "order": 2,
+        "width": "6",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b11c471a6b16ded",
+        "type": "mqtt in",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "topic": "pots",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fde177df96e6add1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 1180,
+        "wires": [
+            [
+                "9e40d2dff4fd99cf"
+            ]
+        ]
+    },
+    {
+        "id": "9e40d2dff4fd99cf",
+        "type": "json",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 1180,
+        "wires": [
+            [
+                "b816f61fd24d6846",
+                "78c38479d2d41f5c",
+                "1e16f7a7d5aa09ca",
+                "9df9a24cea508b8a",
+                "fb07d494073b108c"
+            ]
+        ]
+    },
+    {
+        "id": "b816f61fd24d6846",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "květináč 1",
+        "func": "\nreturn {payload: msg.payload[0]};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1180,
+        "wires": [
+            [
+                "6a3bb64c9bd6fcb9",
+                "6422c56df043442e"
+            ]
+        ]
+    },
+    {
+        "id": "6a3bb64c9bd6fcb9",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "return vlhkost půdy",
+        "func": "\nreturn {payload: msg.payload?.sh};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1180,
+        "wires": [
+            [
+                "9e556e5c27115886",
+                "897d75fa83a88c8c"
+            ]
+        ]
+    },
+    {
+        "id": "6422c56df043442e",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "return hladina vody",
+        "func": "\nreturn {payload: msg.payload?.wl};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1280,
+        "wires": [
+            [
+                "b9d70fbc95256645",
+                "1d7993b4f1bb21fc"
+            ]
+        ]
+    },
+    {
+        "id": "2e51f828d6b588ef",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Hladina vody",
+        "group": "55dd4c7a5922a80f",
+        "order": 4,
+        "width": "6",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 1560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2d263acbd2551020",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "group": "55dd4c7a5922a80f",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Hladina vody",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1010,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "945ba2d014d006ee",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "group": "55dd4c7a5922a80f",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Vlhkost půdy",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1010,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "2835f4eefae3748d",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Vlhkost půdy",
+        "group": "55dd4c7a5922a80f",
+        "order": 2,
+        "width": "6",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "78c38479d2d41f5c",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "květináč 2",
+        "func": "\nreturn {payload: msg.payload[1]};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1400,
+        "wires": [
+            [
+                "1b535c7aabd36dc8",
+                "e1b4e305d0e6fa51"
+            ]
+        ]
+    },
+    {
+        "id": "1b535c7aabd36dc8",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "return vlhkost půdy",
+        "func": "\nreturn {payload: msg.payload?.sh};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1400,
+        "wires": [
+            [
+                "945ba2d014d006ee",
+                "2835f4eefae3748d"
+            ]
+        ]
+    },
+    {
+        "id": "e1b4e305d0e6fa51",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "return hladina vody",
+        "func": "\nreturn {payload: msg.payload?.wl};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1520,
+        "wires": [
+            [
+                "2d263acbd2551020",
+                "2e51f828d6b588ef"
+            ]
+        ]
+    },
+    {
+        "id": "dc72b8457af46095",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Hladina vody",
+        "group": "25833985aee832d0",
+        "order": 4,
+        "width": "6",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 1800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d9a8a935dbd5ed8b",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "group": "25833985aee832d0",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Hladina vody",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1010,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "6b1153b7287cefa1",
+        "type": "ui_gauge",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "group": "25833985aee832d0",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Vlhkost půdy",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1010,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "fa37c208f3a9f46e",
+        "type": "ui_chart",
+        "z": "43f70893a9400a9d",
+        "name": "Vlhkost půdy",
+        "group": "25833985aee832d0",
+        "order": 2,
+        "width": "6",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e16f7a7d5aa09ca",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "květináč 3",
+        "func": "\nreturn {payload: msg.payload[2]};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1640,
+        "wires": [
+            [
+                "5a24717afee96a61",
+                "ef3931f46b985a6e",
+                "fb07d494073b108c"
+            ]
+        ]
+    },
+    {
+        "id": "5a24717afee96a61",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "return vlhkost půdy",
+        "func": "\nreturn {payload: msg.payload?.sh};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1640,
+        "wires": [
+            [
+                "6b1153b7287cefa1",
+                "fa37c208f3a9f46e"
+            ]
+        ]
+    },
+    {
+        "id": "ef3931f46b985a6e",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "return hladina vody",
+        "func": "\nreturn {payload: msg.payload?.wl};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 1760,
+        "wires": [
+            [
+                "d9a8a935dbd5ed8b",
+                "dc72b8457af46095"
+            ]
+        ]
+    },
+    {
+        "id": "93ec4069609be767",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Upozornění vlhkosti půdy",
+        "tooltip": "",
+        "group": "af493a71a357cb85",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1550,
+        "y": 1060,
+        "wires": [
+            [
+                "34a6d5e5c8b89acd"
+            ]
+        ]
+    },
+    {
+        "id": "71c30c4025068dd3",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Upozornění hladiny vody",
+        "tooltip": "",
+        "group": "af493a71a357cb85",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1550,
+        "y": 1100,
+        "wires": [
+            [
+                "889770166907b63b"
+            ]
+        ]
+    },
+    {
+        "id": "34a6d5e5c8b89acd",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "flow.set(\"pot1_soil_hum\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "889770166907b63b",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "flow.set(\"pot1_water_level\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d038ecab5cd9f8a",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 1270,
+        "y": 1220,
+        "wires": [
+            [
+                "93ec4069609be767",
+                "71c30c4025068dd3",
+                "2a72716396d3c254",
+                "87eea3d548d1e445",
+                "84001dbe15ea84bc",
+                "5036b5038ed9cee8",
+                "34a6d5e5c8b89acd",
+                "889770166907b63b",
+                "ea55b87225e0f042",
+                "2b7eb3c948361b81",
+                "4736da8ff53776d2",
+                "e41458be521d7a11"
+            ]
+        ]
+    },
+    {
+        "id": "2a72716396d3c254",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Upozornění vlhkosti půdy",
+        "tooltip": "",
+        "group": "55dd4c7a5922a80f",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1550,
+        "y": 1240,
+        "wires": [
+            [
+                "ea55b87225e0f042"
+            ]
+        ]
+    },
+    {
+        "id": "87eea3d548d1e445",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Upozornění hladiny vody",
+        "tooltip": "",
+        "group": "55dd4c7a5922a80f",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1550,
+        "y": 1280,
+        "wires": [
+            [
+                "2b7eb3c948361b81"
+            ]
+        ]
+    },
+    {
+        "id": "84001dbe15ea84bc",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Upozornění vlhkosti půdy",
+        "tooltip": "",
+        "group": "25833985aee832d0",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1550,
+        "y": 1420,
+        "wires": [
+            [
+                "4736da8ff53776d2"
+            ]
+        ]
+    },
+    {
+        "id": "5036b5038ed9cee8",
+        "type": "ui_numeric",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "label": "Upozornění hladiny vody",
+        "tooltip": "",
+        "group": "25833985aee832d0",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 1550,
+        "y": 1460,
+        "wires": [
+            [
+                "e41458be521d7a11"
+            ]
+        ]
+    },
+    {
+        "id": "4736da8ff53776d2",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "flow.set(\"pot3_soil_hum\", msg.payload);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e41458be521d7a11",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "flow.set(\"pot3_water_level\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea55b87225e0f042",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "flow.set(\"pot2_soil_hum\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2b7eb3c948361b81",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "func": "flow.set(\"pot2_water_level\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9df9a24cea508b8a",
+        "type": "function",
+        "z": "43f70893a9400a9d",
+        "name": "pot alert",
+        "func": "let message = \"\";\n\n// Květináč 1\nlet pot1 = msg.payload[0];\n\nif (pot1) {\n    if (pot1.sh < flow.get(\"pot1_soil_hum\")) {\n        if (!flow.get(\"pot1_soil_hum_alerted\")) {\n            message += `Pot 1 humidity is too low! (${pot1.sh}%)\\n`;\n        }\n        \n        flow.set(\"pot1_soil_hum_alerted\", true);\n    }\n    else {\n        flow.set(\"pot1_soil_hum_alerted\", false);\n    }\n    \n    if (pot1.wl < flow.get(\"pot1_water_level\")) {\n        if (!flow.get(\"pot1_water_level_alerted\")) {\n            message += `Pot 1 water level is too low! (${pot1.wl}%)\\n`;\n        }\n        \n        flow.set(\"pot1_water_level_alerted\", true);\n    }\n    else {\n        flow.set(\"pot1_water_level_alerted\", false);\n    }\n}\n\n\n// Květináč 2\nlet pot2 = msg.payload[1];\n\nif (pot2) {\n    if (pot2.sh < flow.get(\"pot2_soil_hum\")) {\n        if (!flow.get(\"pot2_soil_hum_alerted\")) {\n            message += `Pot 2 humidity is too low! (${pot2.sh}%)\\n`;\n        }\n        \n        flow.set(\"pot2_soil_hum_alerted\", true);\n    }\n    else {\n        flow.set(\"pot2_soil_hum_alerted\", false);\n    }\n    \n    if (pot2.wl < flow.get(\"pot2_water_level\")) {\n        if (!flow.get(\"pot2_water_level_alerted\")) {\n            message += `Pot 2 water level is too low! (${pot2.wl}%)\\n`;\n        }\n        \n        flow.set(\"pot2_water_level_alerted\", true);\n    }\n    else {\n        flow.set(\"pot2_water_level_alerted\", false);\n    }\n}\n\n\n// Květináč 3\nlet pot3 = msg.payload[2];\n\nif (pot3) {\n   if (pot3.sh < flow.get(\"pot3_soil_hum\")) {\n        if (!flow.get(\"pot3_soil_hum_alerted\")) {\n            message += `Pot 3 humidity is too low! (${pot3.sh}%)\\n`;\n        }\n        \n        flow.set(\"pot3_soil_hum_alerted\", true);\n    }\n    else {\n        flow.set(\"pot3_soil_hum_alerted\", false);\n    }\n    \n    if (pot3.wl < flow.get(\"pot3_water_level\")) {\n        if (!flow.get(\"pot3_water_level_alerted\")) {\n            message += `Pot 3 water level is too low! (${pot3.wl}%)\\n`;\n        }\n        \n        flow.set(\"pot3_water_level_alerted\", true);\n    }\n    else {\n        flow.set(\"pot3_water_level_alerted\", false);\n    } \n}\n\n\n\n\n\nif (message.length > 0) {\n    return {payload: message};\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 1020,
+        "wires": [
+            [
+                "bf98a5dd322cf372",
+                "e827423d92a101f5"
+            ]
+        ]
+    },
+    {
+        "id": "20200ef24e4b5a59",
+        "type": "inject",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"wl\":52,\"sh\":33},{\"wl\":52,\"sh\":33}]",
+        "payloadType": "str",
+        "x": 150,
+        "y": 1300,
+        "wires": [
+            [
+                "9e40d2dff4fd99cf"
+            ]
+        ]
+    },
+    {
+        "id": "fb07d494073b108c",
+        "type": "debug",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "e827423d92a101f5",
+        "type": "debug",
+        "z": "43f70893a9400a9d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1570,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "f9e0414dc33efc68",
+        "type": "ui_spacer",
+        "z": "43f70893a9400a9d",
+        "name": "spacer",
+        "group": "3bdf5256ef59e962",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fde177df96e6add1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9d5bb74236fb5db7",
+        "type": "ui_group",
+        "name": "Okolí",
+        "tab": "f55499e70ecdcc19",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bda1ad00daad0957",
+        "type": "ui_group",
+        "name": "Nastavení větráku",
+        "tab": "f55499e70ecdcc19",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b488ae17ab7d923d",
+        "type": "ui_group",
+        "name": "Nastavení upozornění",
+        "tab": "f55499e70ecdcc19",
+        "order": 4,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "af493a71a357cb85",
+        "type": "ui_group",
+        "name": "Květináč 1",
+        "tab": "123d867fa64e786d",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "55dd4c7a5922a80f",
+        "type": "ui_group",
+        "name": "Květináč 2",
+        "tab": "123d867fa64e786d",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "25833985aee832d0",
+        "type": "ui_group",
+        "name": "Květináč 3",
+        "tab": "123d867fa64e786d",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f55499e70ecdcc19",
+        "type": "ui_tab",
+        "name": "Skleník",
+        "icon": "local_florist",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "123d867fa64e786d",
+        "type": "ui_tab",
+        "name": "Květináče",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
